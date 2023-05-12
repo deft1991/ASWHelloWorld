@@ -18,4 +18,4 @@ spring:
     locations: classpath:db/migration
     schemas: public
     enabled: true
-    fail-on-missing-locations: true
+    fail-on-missing-locations: false
