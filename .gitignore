@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Infra ###
+infra/aws/pemkey.pem
+.terraform/
