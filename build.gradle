@@ -35,3 +35,9 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+// Remove `plain` postfix from jar file name
+jar {
+    enabled = true
+    archiveFileName = "_${project.name}-${project.version}.jar"
+}
