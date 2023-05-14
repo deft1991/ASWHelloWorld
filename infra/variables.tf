@@ -25,3 +25,13 @@ variable "azs" {
   default     = ["us-east-2a"]
   type        = list(string)
 }
+
+variable "cloudflare_email" {
+  type        = string
+  description = "Cloudflare email address."
+}
+
+variable "cloudflare_api_token" {
+  type        = string
+  description = "Cloudflare api token."
+}
