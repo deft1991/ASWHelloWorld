@@ -98,10 +98,10 @@ jobs:
           }
     
     # Terraform apply if there is at least one approve from deft or kksudo
-    - name: Terraform Apply
-      id: apply
-      if: |
-        github.event_name == 'pull_request' && github.event.review.state == 'approved'
-        && (github.event.review.user.login == 'deft' || github.event.review.user.login == 'kksudo')
-      run: terraform apply -auto-approve
-      continue-on-error: true
+#    - name: Terraform Apply
+#      id: apply
+#      if: |
+#        github.event_name == 'pull_request' && github.event.review.state == 'approved'
+#        && (github.event.review.user.login == 'deft' || github.event.review.user.login == 'kksudo')
+#      run: terraform apply -auto-approve
+#      continue-on-error: true

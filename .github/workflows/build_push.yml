@@ -51,8 +51,8 @@ jobs:
       steps:
         - uses: actions/checkout@v3
         
-        # Login to ec2 and rerun docker apps to pull the latest images
-        - name: Login to ec2
+        # Login to ec2 and deploy the new images
+        - name: Login to ec2 and deploy the new images
           uses: appleboy/ssh-action@master
           with:
             host: ${{ secrets.EC2_HOST }}
