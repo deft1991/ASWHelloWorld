@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  nginx-proxy:
+    image: nginx:stable-alpine
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    links:
+      - java-app
+    depends_on:
+      - java-app
+  java-app:
+    image: kksudo/deft:latest
+    restart: always
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8080/aws/v1/hello"]
+        interval: 45s
+        timeout: 10s
+        retries: 5
+    

@@ -1,20 +1,38 @@
 resource "aws_instance" "web" {
   ami                         = data.aws_ami.amazon_linux.id
+  associate_public_ip_address = true
   instance_type               = "t2.micro"
   key_name                    = aws_key_pair.ssh_key.key_name
-  vpc_security_group_ids      = [aws_security_group.ec2_access.id]
-  associate_public_ip_address = true
   subnet_id                   = module.vpc.public_subnets[0]
-  user_data                   = <<-EOF
-                #!/bin/bash
-                sudo yum update -y
-                sudo yum install -y docker
-                sudo service docker start
-                sudo usermod -a -G docker ec2-user
-                docker run -d -p 80:8080 --name deft  kksudo/deft:v.0.2-alpine
-                EOF
+  vpc_security_group_ids      = [aws_security_group.ec2_access.id]
 
   tags = var.tags
+  user_data                   = file("${path.module}/ec2-data/bootstrap.sh")
+  user_data_replace_on_change = true
+
+  # Copy the docker-compose.yml and nginx.conf file to the instance
+  provisioner "file" {
+    source      = "${path.module}/ec2-data/sync/docker-compose.yml"
+    destination = "/home/ec2-user/docker-compose.yml"
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file("~/.ssh/id_rsa")
+      host        = self.public_ip
+    }
+  }
+  provisioner "file" {
+    source      = "${path.module}/ec2-data/sync/nginx.conf"
+    destination = "/home/ec2-user/nginx.conf"
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file("~/.ssh/id_rsa")
+      host        = self.public_ip
+    }
+  }
 }
 
 # Supporting Resources
@@ -41,7 +59,6 @@ module "vpc" {
 
   tags = var.tags
 }
-
 
 resource "aws_security_group" "ec2_access" {
   name        = "ec2_access"
