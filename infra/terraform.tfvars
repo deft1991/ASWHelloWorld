@@ -7,4 +7,4 @@ cloudflare_api_token = "your-cloudflare-api-key"
 # export TF_VAR_cloudflare_email="your-email-address.com"
 # export TF_VAR_api_token="your-cloudflare-api-key"
 
-
+# Read more https://developer.hashicorp.com/terraform/cli/config/environment-variables

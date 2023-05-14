@@ -44,7 +44,8 @@ jobs:
               load: true
               tags: ${{ steps.meta.outputs.tags }}
               labels: ${{ steps.meta.outputs.labels }}
-      
+    
+    # TODO: After recreating the ec2 instance, we need add a new ssh key for this job and update the secrets
     deploy:
       runs-on: ubuntu-latest
       needs: build
