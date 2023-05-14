@@ -5,8 +5,8 @@ terraform {
       version = "4.67.0"
     }
     cloudflare = {
-        source  = "cloudflare/cloudflare"
-        version = "4.5.0"
+      source  = "cloudflare/cloudflare"
+      version = "4.5.0"
     }
   }
 }
@@ -17,6 +17,6 @@ provider "aws" {
 }
 
 provider "cloudflare" {
-  email   = var.cloudflare_email
+  email     = var.cloudflare_email
   api_token = var.cloudflare_api_token
 }

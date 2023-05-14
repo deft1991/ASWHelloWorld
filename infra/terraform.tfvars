@@ -1,6 +1,6 @@
 # Cloudflare authentication variables
 # Use this file to store your Cloudflare authentication variables, but do not push it to GitHub
-cloudflare_email   = "your@email-address.com"
+cloudflare_email     = "your@email-address.com"
 cloudflare_api_token = "your-cloudflare-api-key"
 
 # Or use environment variables

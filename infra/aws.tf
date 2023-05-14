@@ -6,7 +6,7 @@ resource "aws_instance" "web" {
   subnet_id                   = module.vpc.public_subnets[0]
   vpc_security_group_ids      = [aws_security_group.ec2_access.id]
 
-  tags = var.tags
+  tags                        = var.tags
   user_data                   = file("${path.module}/ec2-data/bootstrap.sh")
   user_data_replace_on_change = true
 
