@@ -37,5 +37,6 @@ out/
 .vscode/
 
 ### Infra ###
-infra/aws/pemkey.pem
-.terraform/
+infra/.terraform/
+infra/.terraform.lock.hcl
+infra/terraform.tfvars
