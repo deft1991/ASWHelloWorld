@@ -56,12 +56,12 @@ jobs:
         - name: Login to ec2 and deploy the new images
           uses: appleboy/ssh-action@master
           with:
-            host: ${{ secrets.EC2_HOST }}
-            username: ${{ secrets.EC2_USERNAME }}
+            host: '3.138.60.171'
+            username: cicd-user
             key: ${{ secrets.EC2_KEY }}
-            port: ${{ secrets.EC2_PORT }}
+            port: 22
             script: |
-              cd /home/${{ secrets.EC2_USERNAME }}
+              cd /home/cicd-user
               docker-compose pull
               docker-compose up -d
         
